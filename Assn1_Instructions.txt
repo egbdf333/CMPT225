@@ -1,0 +1,86 @@
+CMPT 225 - Assignment 1 - FriendsBook
+Please, read the entire assignment first before starting it!
+This assignment is to be done on your own!
+Objectives
+The objective of this assignment is for you to gain practice with the following:
+
+Design and implement a data collection as an abstract data type (ADT) class that satisfies a set of given requirements.
+
+Apply the four steps of the software development process while creating an object-oriented (OO) solution to a problem.
+
+Step 1 - Problem Statement and Requirements
+In this assignment, we are asked to develop a FriendsBook application (a simple social network), maintaining the profile of its users.
+
+Each person in this social network must have a profile that contains the person’s username, name (first and last name), email address and birthday.
+
+The FriendsBook application must allow a user to
+
+Join the social network (by creating a profile for the user)
+
+Search for a particular profile using the username of the profile
+
+Modify a user's profile: modify the name and/or the email address and/or the birthday of the user, but not the user's username
+
+Leave the social network (by removing the user's profile from the network)
+
+Print all the current users in the social network in ascending order of username. Here (SamplePrintResult.txt) is an example of how the output of the "print" option must look like (i.e., its format)
+
+NOTE: Of course, the above behaviour does not quite match how real social network applications work (for example, no users on a real social network applications have access to the username of other users), but this is good enough for us to achieve the objectives of this Assignment 1.
+
+Step 2 - Design and Step 3 - Implementation
+In this assignment, the design step, in which you establish the classes you shall need in your software solution, has been done for you. Indeed, you shall need two C++ classes and a file containing the main function:
+
+The class that models each user of this simple social network is called Profile class. It is an ADT class. This class has already been created. Download Profile.h and Profile.cpp, open both files and carefully read their content. You must understand how this Profile ADT class works in order to complete MyADT class (see below) and to use this Profile class in your solution to the FriendsBook problem.
+
+Important: You do not have to submit this class, which signifies that you cannot modify it.
+
+The data collection class that manages all the Profile objects: MyADT class.
+
+Download the partially completed MyADT.h and MyADT.cpp and carefully read their content. The documentation these two files contain will help you complete the design and implementation of this class.
+Important: As you complete this class, you cannot remove/modify the code that is already in MyADT.h and MyADT.cpp.
+
+To complete the design and implementation of this class, you will also need to satisfy the following requirements.
+But, first, let's define a few terms:
+
+The letter n: represents the total number of Profile objects in the data collection MyADT.
+The letter m: represents the number of Profile objects in MyADT that have a username starting with the same first letter.
+For example, if we store Profile objects with the following usernames (listed here in no particular order): "zythba", "abcdef", "tttottt", "anotheruser", "trotrutra", "againanotheruser", then n would be 6, m for the letter "a" would be 3, m for the letter "t" would be 2 and m for the letter "z" would be 1.
+Here are the requirements you need to satisfy when completing the design of this class and implementing it:
+
+The insert method of MyADT class must have a time efficiency of O(m).
+The search method of MyADT class must have a time efficiency of O(m) or O(log2 m).
+The remove method of MyADT class must have a time efficiency of O(m).
+In terms of modifying a Profile object, one needs to first search for this object (time efficiency of O(m) or O(log2 m)) then one performs the required modification in O(1). Note that there is no need to create a modify method for MyADT class.
+The print method of the MyADT class must have a time efficiency of O(n).
+Question: What does this imply in terms of the insert method of MyADT class? In other words, how is the insert method of MyADT class to behave such that the print method of this class has a time efficiency of O(n)?
+
+You can only use arrays as the data structure of MyADT class. You cannot use linked lists.
+
+You cannot use 26 "if" statements in your implementation of the methods of your MyADT class.
+
+Hint: You need to decide which data member of the Profile class can be used as the search key mentioned in MyADT class.
+
+You must submit your completed MyADT.h and MyADT.cpp.
+
+And the social network FriendsBook application file that contains the main function and other functions: FriendsBook.cpp. Download this file and read its content. As you will see, this program has already been implemented and is ready for you to use in order to solve the FriendsBook problem.
+
+Make sure that each of your files
+
+Contains a comment header block composed of filename, class description, class invariant (if any), author, date of creation/last modification.
+
+And that all the methods (public and private) of your classes have appropriate documentation: a description, a precondition (if any) and a postcondition (if any). Most of this documentation has already been provided for you. Make sure you understand its purpose.
+
+Note: The same documentation must appear in the class header file (.h) and in the class implementation file (.cpp) of each of your classes.
+
+Finally, your solution must
+
+Not make use of STL, i.e., Standard Template Library in C++ which contains, amongst other things, algorithms like the sort(...) function, and containers like the vector class. Bottom Line: You cannot use STL in this course.
+
+Not make use of struct.
+
+Satisfies the Good Programming Style described on the Good Programming Style web page of our course web site.
+
+Step 4 - Compilation and Testing
+In this assignment, you will need to create a test driver for the MyADT class. Name your test driver MyADTTestDriver.cpp. Once you have written this test driver, test your MyADT class separately from the FriendsBook application by using your test driver. This type of testing (testing a class in isolation using a test driver) allows you to more easily verify that your implementation of the MyADT class is working and satisfies the requirements described above. Once you are satisfied with your class implementation, you can then expand your testing to the FriendsBook application, i.e., test all your classes together and ensure they solve the problem stated in the Problem Statement in Step 1 above.
+
+Note that you cannot make use of the C++ STL library nor can you use code that has not been written by you in the context of this course (this semester) or provided by the instructor.
