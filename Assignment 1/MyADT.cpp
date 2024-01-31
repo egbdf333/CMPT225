@@ -71,7 +71,14 @@ MyADT::~MyADT() {
    // You can also use the above to figure out when this destructor is executed.
    // If you do uncomment it, make sure to comment it out again before you submit your Assignment 1.
   
-   /* Put your code here */
+  // delete/free dynamically allocated arrays
+  // the actual elements[] and elementCount[] do not need to be freed as they will be gone when it goes out of scope
+   int i;
+   for (i = 0; i < MAX_ALPHA; i++) {
+      if (elements[i] != nullptr) {
+         delete[] elements[i];
+      }
+   }
    
 }  
 
