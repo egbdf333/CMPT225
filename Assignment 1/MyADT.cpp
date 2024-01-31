@@ -107,19 +107,19 @@ bool MyADT::insert(const Profile& newElement) {
    }
 
    if (elements[traverseIndex] == nullptr) {
+      // create a new dynamically allocated Profile array and set first index to be newElement
       elements[traverseIndex] = new Profile[MAX_ELEMENTS];
       elements[traverseIndex][0] = newElement;
       elementCount[traverseIndex]++;
    }
    else {
+      // traverse the current array and compare each profile with the current profile
       for (i = elementCount[traverseIndex] - 1; (0 <= i) && (elements[traverseIndex][i] > newElement); i--) {
          elements[traverseIndex][i + 1] = elements[traverseIndex][i];
       }
       elements[traverseIndex][i + 1] = newElement;
       elementCount[traverseIndex]++;
    }
-
-
    return true;
 }  
 
@@ -127,9 +127,22 @@ bool MyADT::insert(const Profile& newElement) {
 // Postcondition: toBeRemoved (if found) is removed and the appropriate elementCount is decremented.
 //                Returns "true" when the removal is successfull, otherwise "false".  
 bool MyADT::remove(const Profile& toBeRemoved) {
+   int i;
+   int j;
 
-   return false;
+   char searchKey = toBeRemoved.getSearchKey();
+   int traverseIndex = searchKey - 'a';
    
+   for ( i = 0; i < elementCount[traverseIndex]; i++) {
+      if (elements[traverseIndex][i] == toBeRemoved) {
+         for (j = i; j < elementCount[traverseIndex] - 1; j++) {
+            elements[traverseIndex][j] = elements[traverseIndex][j + 1];
+         }
+         elements[j + 1] = nullptr;
+         return true;
+      }
+   }
+   return false;
 }  
 
 
@@ -138,17 +151,29 @@ bool MyADT::remove(const Profile& toBeRemoved) {
 //                the state it is in once it has been constructed (once
 //                the default constructor has executed). 
 void MyADT::removeAll() {
-    
-
-
+   // loop through and delete all profile objects in the sub arrays
+   int i;
+   for (i = 0; i < MAX_ALPHA; i++) {
+      delete[] elements[i];
+      elementCount[i] = 0;
+   }
 }   
 
 // Description: Searches for target element in the data collection MyADT. 
 //              Returns a pointer to the element if found, otherwise, returns nullptr.
 Profile* MyADT::search(const Profile& target) {
     
-    return nullptr;
-
+   int i;
+   char searchKey = target.getSearchKey();
+   int traverseIndex = searchKey - 'a';
+   
+   for (i = 0; i < elementCount[traverseIndex]; i++) {
+      if (elements[traverseIndex][i] == target) {
+         Profile* targetProfile = &elements[traverseIndex][i];
+         return targetProfile;
+      }
+   }
+   return nullptr;
 }  
 
 
@@ -156,7 +181,14 @@ Profile* MyADT::search(const Profile& target) {
 // ***For Testing Purposes - Not part of this class' public interface.***
 void MyADT::print() {
   
-    /* Put your code here */  
+   int i;
+   int j;
+
+   for (i = 0; i < MAX_ALPHA; i++) {
+      for (j = 0; j < elementCount[i]; j++) {
+         std::cout << elements[i][j] << endl;
+      }
+   }
 
 } 
 
