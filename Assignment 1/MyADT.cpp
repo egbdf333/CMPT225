@@ -31,8 +31,16 @@ MyADT::MyADT() {
    // You can also use the above to figure out when this constructor is executed.
    // If you do uncomment it, make sure to comment it out again before you submit your Assignment 1.
  
-   /* Put your code here */
-   
+   for (int i = 0; i < MAX_ALPHA; i++) {
+      elements[i] = nullptr;
+      elementCount[i] = 0;
+   }
+
+   // for (i - 26) {
+   //    malloc Profile array size 1
+   //    assign pointer to Profile array
+   //    store pointer into elements[i]
+   // }
 }  
 
 // Copy constructor - Covered in Lab 3
@@ -41,7 +49,7 @@ MyADT::MyADT(const MyADT& rhs) {
    // You can also use the above to figure out when this constructor is executed.
    // If you do uncomment it, make sure to comment it out again before you submit your Assignment 1.
 
-   /* Put your code here */
+   
    
 }  
 
@@ -71,8 +79,11 @@ MyADT::~MyADT() {
 // Description: Returns the total number of elements currently stored in the data collection MyADT.  
 unsigned int MyADT::getElementCount() const {
 
-   /* Put your code here */
-
+   unsigned int totalElementCount = 0;
+   for (int i = 0; i < MAX_ALPHA; i++) {
+      totalElementCount += elementCount[i];
+   }
+   return totalElementCount;
 }
 
 
@@ -83,7 +94,23 @@ unsigned int MyADT::getElementCount() const {
 bool MyADT::insert(const Profile& newElement) {
  
    /* Put your code here */
-   
+   // get first letter of the username
+   // take first letter - 'a' to get index
+   // insert into the array pointed to by the pointer in the index
+
+   char searchKey = newElement.getSearchKey();
+   int index = searchKey - 'a';
+   if (elements[index] == nullptr) {
+      elements[index] = new Profile[MAX_ELEMENTS];
+   }
+   if (elementCount[index] == MAX_ELEMENTS) {
+      return false;
+   }
+
+   elements[index][elementCount[index]] = newElement;
+   elementCount[index] += 1;
+
+   return true;
 }  
 
 // Description: Removes an element from the data collection MyADT. 
@@ -91,7 +118,7 @@ bool MyADT::insert(const Profile& newElement) {
 //                Returns "true" when the removal is successfull, otherwise "false".  
 bool MyADT::remove(const Profile& toBeRemoved) {
 
-   /* Put your code here */
+   return false;
    
 }  
 
@@ -102,7 +129,7 @@ bool MyADT::remove(const Profile& toBeRemoved) {
 //                the default constructor has executed). 
 void MyADT::removeAll() {
     
-    /* Put your code here */
+
 
 }   
 
@@ -110,7 +137,7 @@ void MyADT::removeAll() {
 //              Returns a pointer to the element if found, otherwise, returns nullptr.
 Profile* MyADT::search(const Profile& target) {
     
-    /* Put your code here */
+    return nullptr;
 
 }  
 
