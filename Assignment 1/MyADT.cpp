@@ -99,16 +99,26 @@ bool MyADT::insert(const Profile& newElement) {
    // insert into the array pointed to by the pointer in the index
 
    char searchKey = newElement.getSearchKey();
-   int index = searchKey - 'a';
-   if (elements[index] == nullptr) {
-      elements[index] = new Profile[MAX_ELEMENTS];
-   }
-   if (elementCount[index] == MAX_ELEMENTS) {
+   int traverseIndex = searchKey - 'a';
+   int i;
+
+   if (elementCount[traverseIndex] == MAX_ELEMENTS) {
       return false;
    }
 
-   elements[index][elementCount[index]] = newElement;
-   elementCount[index] += 1;
+   if (elements[traverseIndex] == nullptr) {
+      elements[traverseIndex] = new Profile[MAX_ELEMENTS];
+      elements[traverseIndex][0] = newElement;
+      elementCount[traverseIndex]++;
+   }
+   else {
+      for (i = elementCount[traverseIndex] - 1; (0 <= i) && (elements[traverseIndex][i] > newElement); i--) {
+         elements[traverseIndex][i + 1] = elements[traverseIndex][i];
+      }
+      elements[traverseIndex][i + 1] = newElement;
+      elementCount[traverseIndex]++;
+   }
+
 
    return true;
 }  
