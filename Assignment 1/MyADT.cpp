@@ -49,6 +49,22 @@ MyADT::MyADT(const MyADT& rhs) {
    // You can also use the above to figure out when this constructor is executed.
    // If you do uncomment it, make sure to comment it out again before you submit your Assignment 1.
 
+   int i;
+   int j;
+   for (i = 0; i < MAX_ALPHA; i++) {
+      // copy elementCount
+      elementCount[i] = rhs.elementCount[i];
+
+      if (elements[i] != nullptr) {
+         elements[i] = new Profile;
+      }
+      else {
+         elements[i] = nullptr;
+      }
+      for (j = 0; j < MAX_ELEMENTS; j++) {
+         elements[i][j] = rhs.elements[i][j];
+      }
+   }
    
    
 }  
@@ -142,13 +158,17 @@ bool MyADT::remove(const Profile& toBeRemoved) {
    
    for ( i = 0; i < elementCount[traverseIndex]; i++) {
       if (elements[traverseIndex][i] == toBeRemoved) {
-         for (j = i; j < elementCount[traverseIndex] - 1; j++) {
+         std::cout << "in array: " << elements[traverseIndex][i] << endl; //debug
+         std::cout << "toBeRemoved: " << toBeRemoved << endl; //debug
+         for (j = i; j < (elementCount[traverseIndex] - 1); j++) {
             elements[traverseIndex][j] = elements[traverseIndex][j + 1];
          }
-         elements[j + 1] = nullptr;
+         elementCount[traverseIndex] -= 1;
+         std::cout << elements[traverseIndex][0]; //debug
          return true;
       }
    }
+   
    return false;
 }  
 
