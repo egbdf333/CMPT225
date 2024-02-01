@@ -31,7 +31,7 @@ MyADT::MyADT() {
    // You can also use the above to figure out when this constructor is executed.
    // If you do uncomment it, make sure to comment it out again before you submit your Assignment 1.
  
-   for (int i = 0; i < MAX_ALPHA; i++) {
+   for (unsigned int i = 0; i < MAX_ALPHA; i++) {
       elements[i] = nullptr;
       elementCount[i] = 0;
    }
@@ -49,8 +49,8 @@ MyADT::MyADT(const MyADT& rhs) {
    // You can also use the above to figure out when this constructor is executed.
    // If you do uncomment it, make sure to comment it out again before you submit your Assignment 1.
 
-   int i;
-   int j;
+   unsigned int i;
+   unsigned int j;
    for (i = 0; i < MAX_ALPHA; i++) {
       // copy elementCount
       elementCount[i] = rhs.elementCount[i];
@@ -89,7 +89,7 @@ MyADT::~MyADT() {
   
   // delete/free dynamically allocated arrays
   // the actual elements[] and elementCount[] do not need to be freed as they will be gone when it goes out of scope
-   int i;
+   unsigned int i;
    for (i = 0; i < MAX_ALPHA; i++) {
       if (elements[i] != nullptr) {
          delete[] elements[i];
@@ -103,7 +103,7 @@ MyADT::~MyADT() {
 unsigned int MyADT::getElementCount() const {
 
    unsigned int totalElementCount = 0;
-   for (int i = 0; i < MAX_ALPHA; i++) {
+   for (unsigned int i = 0; i < MAX_ALPHA; i++) {
       totalElementCount += elementCount[i];
    }
    return totalElementCount;
@@ -150,8 +150,8 @@ bool MyADT::insert(const Profile& newElement) {
 // Postcondition: toBeRemoved (if found) is removed and the appropriate elementCount is decremented.
 //                Returns "true" when the removal is successfull, otherwise "false".  
 bool MyADT::remove(const Profile& toBeRemoved) {
-   int i;
-   int j;
+   unsigned int i;
+   unsigned int j;
 
    char searchKey = toBeRemoved.getSearchKey();
    int traverseIndex = searchKey - 'a';
@@ -179,7 +179,7 @@ bool MyADT::remove(const Profile& toBeRemoved) {
 //                the default constructor has executed). 
 void MyADT::removeAll() {
    // loop through and delete all profile objects in the sub arrays
-   int i;
+   unsigned int i;
    for (i = 0; i < MAX_ALPHA; i++) {
       delete[] elements[i];
       elementCount[i] = 0;
@@ -190,7 +190,7 @@ void MyADT::removeAll() {
 //              Returns a pointer to the element if found, otherwise, returns nullptr.
 Profile* MyADT::search(const Profile& target) {
     
-   int i;
+   unsigned int i;
    char searchKey = target.getSearchKey();
    int traverseIndex = searchKey - 'a';
    
@@ -208,8 +208,8 @@ Profile* MyADT::search(const Profile& target) {
 // ***For Testing Purposes - Not part of this class' public interface.***
 void MyADT::print() {
   
-   int i;
-   int j;
+   unsigned int i;
+   unsigned int j;
 
    for (i = 0; i < MAX_ALPHA; i++) {
       for (j = 0; j < elementCount[i]; j++) {

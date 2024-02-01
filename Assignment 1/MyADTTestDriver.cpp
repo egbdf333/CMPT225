@@ -126,8 +126,6 @@ int main() {
 
     // Variables declaration
     MyADT members = MyADT(); 
-    bool done = false;
-    char input = 0;
 
     // test data
     string userName1 = "thai god of war";
