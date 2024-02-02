@@ -51,23 +51,23 @@ MyADT::MyADT(const MyADT& rhs) {
 
    unsigned int i;
    unsigned int j;
-   for (i = 0; i < MAX_ALPHA; i++) {
-      // copy elementCount
-      elementCount[i] = rhs.elementCount[i];
 
-      if (elements[i] != nullptr) {
-         elements[i] = new Profile;
+  for (i = 0; i < MAX_ALPHA; i++) {
+   elementCount[i] = rhs.elementCount[i];
+   if (rhs.elements[i] != nullptr) {
+      
+      elements[i] = new Profile[elementCount[i]];
+
+      for (j = 0; j < elementCount[i]; j++) {
+        elements[i][j] = rhs.elements[i][j];
+
       }
-      else {
-         elements[i] = nullptr;
-      }
-      for (j = 0; j < MAX_ELEMENTS; j++) {
-         elements[i][j] = rhs.elements[i][j];
-      }
-   }
-   
-   
-}  
+    }
+    else {
+      elements[i] = nullptr;
+    }
+  }
+}
 
 // Overloaded assignment operator - Covered in Lab 5
 // Therefore, we shall not be overloading this operator in our Assignment 1

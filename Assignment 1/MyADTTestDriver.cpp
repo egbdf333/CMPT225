@@ -166,6 +166,17 @@ int main() {
 
     print(members);
 
+    std::cout << "before test" << endl;
 
+    // god i hate life
+    MyADT copyConstructorADT;
+    // std::cout << "test 1" << endl;
+    copyConstructorADT = MyADT(members);
+    // std::cout << "test 2" << endl;
+    // std::cout << "Printing ADT from copy constructor" << endl;
+    copyConstructorADT.print();
+    std::cout << endl;
+
+    std::cout << "exiting now" << endl;
     return 0;
 }
